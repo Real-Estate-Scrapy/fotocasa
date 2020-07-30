@@ -39,22 +39,12 @@ class FotocasaSpiderSpider(scrapy.Spider):
 
     def start_requests(self):
         for page in self.start_urls:
-            # yield SplashRequest(
-            #     url=url,
-            #     callback=self.parse,
-            #     args={'wait': 0.5}
-            # )
             yield scrapy.Request(url=page, callback=self.crawl_page)
 
     def crawl_page(self, response):
         # response.xpath('//script/text()')[3].root -> this will get the variable for the json
         property_urls = ''
         for property in property_urls:
-            # yield SplashRequest(
-            #     url=url,
-            #     callback=self.parse,
-            #     args={'wait': 0.5}
-            # )
             yield scrapy.Request(url=property, callback=self.crawl_property)
 
     def crawl_property(self, response):
@@ -114,33 +104,6 @@ class FotocasaSpiderSpider(scrapy.Spider):
 
         yield property
 
-    # def get_proxies(self):
-    #     url = 'https://free-proxy-list.net/'
-    #     response = requests.get(url)
-    #     parser = fromstring(response.text)
-    #     proxies = set()
-    #     for i in parser.xpath('//tbody/tr')[:40]: #[:50]: # get only the first 10 proxies
-    #         if i.xpath('.//td[7][contains(text(),"yes")]'):
-    #             proxy = ":".join([i.xpath('.//td[1]/text()')[0], i.xpath('.//td[2]/text()')[0]])
-    #             proxies.add(proxy)
-    #
-    #     self.export_proxy_sets(proxies)
-    #
-    #     return proxies
-    #
-    # def export_proxy_sets(self, proxies, filename='proxies.txt', filepath=getcwd()):
-    #     outFile = join(filepath, 'fotocasa', filename)
-    #
-    #     with open(outFile, 'w') as file:
-    #         cntr = 0
-    #         for proxy in proxies:
-    #             cntr += 1
-    #             file.write(str(proxy) + "\n")
-    #
-    #     print("number of proxies written: {}".format(cntr))
-    #     print('Done exporting proxies to file: {}'.format(filename))
-    #
-    #     return outFile
     def get_tags(self, response):
         tags = ''
         top_tags_list = response.xpath('//*[@class="re-DetailFeaturesList-feature"]')  # upper tag block
