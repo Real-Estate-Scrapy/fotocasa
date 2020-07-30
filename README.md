@@ -3,6 +3,12 @@
 ## Description
 Scraping property details from https:/fotocasa.es/ and store it in Postgresql database.
 
+### Implementations
+1. Webscraping property details from fotocasa website
+2. Rotating proxy to bypass antibot mechanism of the websource
+3. Scrapy-Splash implementation for javascript content such as infinite scrolling.
+4. Model/Pipeline design and development for PostgresQL database.
+
 
 ## Setup Environment Variables
 In `settings.py` add the following configuration:
